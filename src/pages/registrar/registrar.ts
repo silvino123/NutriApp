@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {TabsPage} from '../../pages/tabs/tabs';
+import { IonicPage, NavController, NavParams ,LoadingController } from 'ionic-angular';
+//import {TabsPage} from '../../pages/tabs/tabs';
+import {DatosperfilPage} from '../../pages/datosperfil/datosperfil';
 /**
  * Generated class for the RegistrarPage page.
  *
@@ -15,11 +16,18 @@ import {TabsPage} from '../../pages/tabs/tabs';
 })
 export class RegistrarPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController) {
   }
 
   Registrar(){
-    this.navCtrl.setRoot(TabsPage)
+    const loader = this.loadingCtrl.create({
+      content: "Conectando...",
+      duration: 1000
+    });
+    loader.present();
+    this.navCtrl.setRoot(DatosperfilPage)
+  
+   
   }
 
 }

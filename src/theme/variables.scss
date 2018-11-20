@@ -40,39 +40,55 @@ $colors: (
   light:      #f4f4f4,
   dark:       #222,
   rojo: #ef5350,
-  rojo2:#ef9a9a
+  rojo2:#ef9a9a,
+  blanco:#ffffff
 );
 .bar {
   background-color: transparent;
 }
 .boton_personalizado {
   text-decoration: none;
-  padding: 12px;
+  padding: 10px;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   color: #ffffff;
   background-color: #32db64;
- 
+  border-radius: 40px;
+   -webkit-border-radius: 40px;
 }
 .boton_personalizado2 {
   text-decoration: none;
-  padding: 12px;
+  padding: 9px;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   color: #ffffff;
   background-color: #ef5350;
+  border-radius: 40px;
+   -webkit-border-radius: 40px;
  
 }
 .boton_personalizado3 {
   text-decoration: none;
-  padding: 12px;
+  padding: 9px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #ffcc80;
+  border-radius: 40px;
+   -webkit-border-radius: 40px;
+ 
+}
+.boton_personalizado4 {
+  text-decoration: none;
+  padding: 18px;
   font-weight: 600;
   font-size: 16px;
   color: #ffffff;
   background-color: #ffcc80;
+  border-radius: 200px;
+   -webkit-border-radius: 200px;
  
 }
-
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here

@@ -10,8 +10,8 @@
   <ion-item-group>
    
     
-    <ion-item-divider color="light">Calorias Diarias Requeridas</ion-item-divider>
-    <ion-item color="secondary"><h1>1600 Kcal</h1> </ion-item>
+    <ion-item-divider color="light" text-center>Calorias Diarias Requeridas</ion-item-divider>
+    <ion-item color="secondary"><h1 text-center>1600 Kcal</h1> </ion-item>
     <ion-item-divider color="light">Distribucion de Nutrientes</ion-item-divider>
     <ion-item (click)="showRadio()">Tipo de Dieta | {{dieta}} </ion-item>
     <ion-item>Carbohidratos %</ion-item>
@@ -19,14 +19,15 @@
     <ion-item>Grasas %</ion-item>
     <ion-item-divider color="light">Gramos por dia</ion-item-divider>
     <ion-item style="height:100px"> 
-      <button color="secondary" right class="boton_personalizado">Carbohidratos<br>208g<br>832kcal</button>
-      <button color="secondary" center class="boton_personalizado2">Proteinas<br>208g<br>832kcal</button>
+      <button color="secondary" right class="boton_personalizado">Carbohidratos<br>208g<br>832kcal</button>&nbsp;
+      <button color="secondary" center class="boton_personalizado2">Proteinas<br>208g<br>832kcal</button>&nbsp;
       <button color="secondary" end class="boton_personalizado3">Grasas<br>208g<br>832kcal</button>
   </ion-item>
   <ion-item-divider color="light">Gramos por Comida</ion-item-divider>
+  <ion-item (click)="showRadio2()">Comidas por dia | {{comida}} </ion-item>
   <ion-item style="height:100px"> 
-    <button color="secondary" right class="boton_personalizado">Carbohidratos<br>48g</button>
-    <button color="secondary" center class="boton_personalizado2">Proteinas<br>20g</button>
+    <button color="secondary" right class="boton_personalizado">Carbohidratos<br>48g</button>&nbsp;
+    <button color="secondary" center class="boton_personalizado2">Proteinas<br>20g</button>&nbsp;
     <button color="secondary" end class="boton_personalizado3">Grasas<br>4g</button>
 </ion-item>
   </ion-item-group>
