@@ -19,22 +19,22 @@
 
     <ion-item>
       <ion-label floating>Altura (Mts)</ion-label>
-      <ion-input type="number"></ion-input>
+      <ion-input type="number" [(ngModel)]="perfil.altura" name="altura"></ion-input>
     </ion-item>
   
     <ion-item>
       <ion-label floating>Peso (Kg)</ion-label>
-      <ion-input type="number"></ion-input>
+      <ion-input type="number" [(ngModel)]="perfil.peso" name="peso"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Edad</ion-label>
-      <ion-input type="number"></ion-input>
+      <ion-input type="number" [(ngModel)]="perfil.edad" name="edad"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Sexo</ion-label>
-      <ion-select >
-        <ion-option value="nes">Masculino</ion-option>
-        <ion-option value="n64">Femenino</ion-option>
+      <ion-select [(ngModel)]="perfil.sexo" name="sexo" >
+        <ion-option value="Masculino">Masculino</ion-option>
+        <ion-option value="Femenino">Femenino</ion-option>
         
       </ion-select>
     </ion-item>

@@ -40,10 +40,10 @@
       
       <ion-item style="padding:0px !important; border-bottom:none !important;border-top:none;font-size: 18px;margin-top:10px;background:none;border-bottom:1px solid white;box-shadow:none;">
         
-        <ion-input floating type="text" placeholder="Correo" style="color:white"></ion-input>
+        <ion-input floating type="email" placeholder="Correo" style="color:white" [(ngModel)]="email" name="email"></ion-input>
       </ion-item>
       <ion-item style="padding:0px !important; font-size: 18px;margin-top:10px;background:none;border-bottom:1px solid white;box-shadow:none;">
-        <ion-input  type="password" placeholder="Contraseña" style="color:white"></ion-input>
+        <ion-input  type="password" placeholder="Contraseña" style="color:white"  [(ngModel)]="password" name="password"></ion-input>
       </ion-item>
     </ion-list>
     

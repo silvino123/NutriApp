@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams ,LoadingController } from 'ionic-angular';
 //import {TabsPage} from '../../pages/tabs/tabs';
+import { AngularFireAuth} from '@angular/fire/auth';
 import {DatosperfilPage} from '../../pages/datosperfil/datosperfil';
 /**
  * Generated class for the RegistrarPage page.
@@ -15,11 +16,13 @@ import {DatosperfilPage} from '../../pages/datosperfil/datosperfil';
   templateUrl: 'registrar.html',
 })
 export class RegistrarPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController) {
+  email:string;
+  password:string;
+  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController,public  aAuth:AngularFireAuth) {
   }
 
   Registrar(){
+    this.aAuth.auth.createUserWithEmailAndPassword(this.email,this.password).then(e => console.log(e))
     const loader = this.loadingCtrl.create({
       content: "Conectando...",
       duration: 1000

@@ -85,6 +85,36 @@ export class AboutPage {
       value: '5',
       checked: false
     });
+    alert.addInput({
+      type: 'radio',
+      label: '6',
+      value: '6',
+      checked: false
+    });
+    alert.addInput({
+      type: 'radio',
+      label: '7',
+      value: '7',
+      checked: false
+    });
+    alert.addInput({
+      type: 'radio',
+      label: '8',
+      value: '8',
+      checked: false
+    });
+    alert.addInput({
+      type: 'radio',
+      label: '9',
+      value: '9',
+      checked: false
+    });
+    alert.addInput({
+      type: 'radio',
+      label: '10',
+      value: '10',
+      checked: false
+    });
 
 
     alert.addButton('Cancel');

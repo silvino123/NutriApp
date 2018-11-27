@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
 import { RegistrarPage} from '../../pages/registrar/registrar';
 import {TabsPage} from '../../pages/tabs/tabs';
+import { AngularFireAuth} from '@angular/fire/auth';
 /**
  * Generated class for the LoginPage page.
  *
@@ -16,15 +17,42 @@ import {TabsPage} from '../../pages/tabs/tabs';
 })
 export class LoginPage {
  
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+   email:string;
+   password:string;
+ 
+  constructor(public navCtrl: NavController, public navParams: NavParams,public aAuth:AngularFireAuth,public toastCtrl: ToastController) {
   }
   Registrarse(){
     this.navCtrl.push(RegistrarPage)
   }
 
   login(){
-    this.navCtrl.setRoot(TabsPage)
+      try{
+       const result= this.aAuth.auth.signInWithEmailAndPassword(this.email,this.password)
+     if(result){
+      this.navCtrl.setRoot(TabsPage)
+     }
+      }
+      catch(e){
+        const toast = this.toastCtrl.create({
+          message: e,
+          duration: 3000
+        });
+        toast.present();
+      }
+   
+     
+   
+     //
   }
- 
+  presentToast() {
+    const toast = this.toastCtrl.create({
+      message: 'Correo y/o Contraseña invalidos',
+      duration: 3000
+    });
+    toast.present();
+  }
+
+  }
     
-}
+

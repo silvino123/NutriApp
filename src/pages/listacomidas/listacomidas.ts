@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import {ContactPage} from '../../pages/contact/contact'
 /**
  * Generated class for the ListacomidasPage page.
  *
@@ -14,12 +14,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'listacomidas.html',
 })
 export class ListacomidasPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+ public Nombre="Manzana";
+ public Descripcion="Fruta";
+ 
+ public Tipo= "Desayuno";
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ListacomidasPage');
+  redirecAlimen(){
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Detalles del alimento');
+    
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Agregar',
+      handler: data => {
+        
+         this.Nombre= this.Nombre;
+         this.Descripcion= this.Descripcion;
+         this.Tipo= this.Tipo;
+         this.navCtrl.setRoot(ContactPage,{Nombre:this.Nombre,Descripcion:this.Descripcion,Tipo:this.Tipo})
+         
+      }
+    });
+    alert.present();
   }
 
 }
