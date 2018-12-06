@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, MenuController} from 'ionic-angular';
+import { NavController} from 'ionic-angular';
 import { AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from 'angularfire2/database';
 //import {Perfil} from'../../app/models/perfil'
@@ -12,8 +12,8 @@ import {AngularFireDatabase} from 'angularfire2/database';
 export class HomePage {
   perfilDatos:any;
   kcal:any;
-  constructor(public navCtrl: NavController,private afAuth:AngularFireAuth,private afDatabase:AngularFireDatabase,private menu:MenuController) {
-    menu.enable(true);
+  constructor(public navCtrl: NavController,private afAuth:AngularFireAuth,private afDatabase:AngularFireDatabase) {
+    
   }
   ionViewWillLoad(){
    this.afAuth.authState.take(1).subscribe(data =>{

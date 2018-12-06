@@ -12,6 +12,8 @@ import { RegistrarPage } from '../pages/registrar/registrar';
 import { DatosperfilPage } from '../pages/datosperfil/datosperfil';
 import {ListacomidasPage} from '../pages/listacomidas/listacomidas';
 import {AlimentosPage} from '../pages/alimentos/alimentos';
+import {ComidasPersonalizadasPage} from '../pages/comidas-personalizadas/comidas-personalizadas';
+import {ComidasRegionalesPage} from '../pages/comidas-regionales/comidas-regionales';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {AngularFireModule} from 'angularfire2';
@@ -38,7 +40,9 @@ var config = {
     RegistrarPage,
     DatosperfilPage,
     ListacomidasPage,
-    AlimentosPage
+    AlimentosPage,
+    ComidasPersonalizadasPage,
+    ComidasRegionalesPage
     
   ],
   imports: [
@@ -62,7 +66,9 @@ var config = {
     RegistrarPage,
     DatosperfilPage,
     ListacomidasPage,
-    AlimentosPage
+    AlimentosPage,
+    ComidasPersonalizadasPage,
+    ComidasRegionalesPage
   ],
   providers: [
     StatusBar,

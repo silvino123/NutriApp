@@ -5,6 +5,8 @@ import {AlimentosPage} from '../../pages/alimentos/alimentos';
 import {AngularFireList} from 'angularfire2/database';
 import * as firebase from 'firebase';
 import {snapshotToArray} from '../../app/models/perfil'
+import {ComidasPersonalizadasPage} from '../../pages/comidas-personalizadas/comidas-personalizadas'
+import {ComidasRegionalesPage} from '../comidas-regionales/comidas-regionales';
 
 //import { map } from 'rxjs/operator/map';
 
@@ -88,5 +90,11 @@ export class ListacomidasPage {
         return (item.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
+  }
+  redirComidasPer(){
+  this.navCtrl.push(ComidasPersonalizadasPage)
+  }
+  redirComidasReg(){
+    this.navCtrl.push(ComidasRegionalesPage)
   }
 }
