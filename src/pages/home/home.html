@@ -13,17 +13,18 @@
   
     <ion-item-group>
       <ion-item-divider color="light">Datos del perfil</ion-item-divider>
-      <ion-item>Altura (Cm):&nbsp; <b style="color:#ffcc80">178</b></ion-item>
-      <ion-item>Peso (kg):&nbsp; <b style="color:#ffcc80">90</b></ion-item>
-      <ion-item>Sexo:&nbsp; <b style="color:#ffcc80">Masculino</b></ion-item>
-      <ion-item>Edad:&nbsp; <b style="color:#ffcc80">24</b></ion-item>
+      <ion-item>Altura (Cm):&nbsp; <b style="color:#32db64">{{(perfilDatos | async)?.altura}}</b></ion-item>
+      <ion-item>Peso (kg):&nbsp; <b style="color:#32db64">{{(perfilDatos| async)?.peso}}</b></ion-item>
+      <ion-item>Edad:&nbsp; <b style="color:#32db64">{{(perfilDatos| async)?.edad}}</b></ion-item>
+      <ion-item>Sexo:&nbsp; <b style="color:#32db64">{{(perfilDatos| async)?.sexo}}</b></ion-item>
+      <ion-item>Nivel de Actividad:&nbsp; <b style="color:#32db64">{{(perfilDatos| async)?.nivel}}</b></ion-item>
       <ion-item-divider color="light">Resultados</ion-item-divider>
-      <ion-item> </ion-item>
-      <ion-item></ion-item>
-      <ion-item></ion-item>
+      <ion-item>Indice de Masa Corporal&nbsp; <b style="color:#f53d3d">{{(perfilDatos| async)?.imc}}</b> </ion-item>
+      <ion-item>Grasa Corporal&nbsp; <b style="color:#f53d3d">%{{(perfilDatos| async)?.grasa}}</b> </ion-item>
+      <ion-item>Agua Requerida&nbsp; <b style="color:#f53d3d">{{(perfilDatos| async)?.agua}}(ml)</b> </ion-item>
       
       <ion-item-divider color="light" text-center>Calorias Diarias Requeridas</ion-item-divider>
-      <ion-item color="secondary"><h1 text-center>1600 Kcal</h1> </ion-item>
+      <ion-item color="secondary"><h1 text-center>{{(perfilDatos| async)?.kcal}}</h1> </ion-item>
       
     </ion-item-group>
  

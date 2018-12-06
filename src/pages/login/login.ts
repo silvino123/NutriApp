@@ -31,11 +31,13 @@ export class LoginPage {
        const result= this.aAuth.auth.signInWithEmailAndPassword(this.email,this.password)
      if(result){
       this.navCtrl.setRoot(TabsPage)
-     }
+              }
       }
       catch(e){
+       
         const toast = this.toastCtrl.create({
-          message: e,
+         
+          message: "Correo y/o Contraseña invalidos",
           duration: 3000
         });
         toast.present();
@@ -45,13 +47,7 @@ export class LoginPage {
    
      //
   }
-  presentToast() {
-    const toast = this.toastCtrl.create({
-      message: 'Correo y/o Contraseña invalidos',
-      duration: 3000
-    });
-    toast.present();
-  }
+  
 
   }
     
