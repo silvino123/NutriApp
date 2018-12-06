@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController} from 'ionic-angular';
+import { NavController,App} from 'ionic-angular';
 import { AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from 'angularfire2/database';
+import { LoginPage } from '../login/login';
 //import {Perfil} from'../../app/models/perfil'
 //import { Observable } from 'rxjs';
 @Component({
@@ -12,7 +13,7 @@ import {AngularFireDatabase} from 'angularfire2/database';
 export class HomePage {
   perfilDatos:any;
   kcal:any;
-  constructor(public navCtrl: NavController,private afAuth:AngularFireAuth,private afDatabase:AngularFireDatabase) {
+  constructor(public navCtrl: NavController,private afAuth:AngularFireAuth,private afDatabase:AngularFireDatabase,public app:App) {
     
   }
   ionViewWillLoad(){
@@ -25,6 +26,10 @@ export class HomePage {
      
    })
 
+  }
+  logout(){
+    this.app.getRootNav().setRoot(LoginPage);
+    //this.navCtrl.setRoot(LoginPage); 
   }
 
 }

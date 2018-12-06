@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import{Alimento} from '../../app/models/perfil'
 import {AngularFireDatabase} from 'angularfire2/database'
 import{ ListacomidasPage } from '../../pages/listacomidas/listacomidas'
+import * as firebase from 'firebase';
+import {snapshotToArray} from '../../app/models/perfil'
 /**
  * Generated class for the AlimentosPage page.
  *
@@ -17,11 +19,16 @@ import{ ListacomidasPage } from '../../pages/listacomidas/listacomidas'
 })
 export class AlimentosPage {
   alimento ={} as Alimento;
+  items=[];
+  items2: any;
+  ref= firebase.database().ref('Alimentos/')
   constructor(public navCtrl: NavController, public navParams: NavParams,private afDatabase:AngularFireDatabase) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AlimentosPage');
+    this.ref.on('value',resp =>{
+      this.items= snapshotToArray(resp);
+    })
   }
   Agregar(){
     this.afDatabase.list(`Alimentos/`).push(this.alimento)

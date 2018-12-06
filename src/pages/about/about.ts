@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController,AlertController } from 'ionic-angular';
+import { NavController,AlertController,App } from 'ionic-angular';
 import { AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from 'angularfire2/database';
 import { Dieta } from '../../app/models/perfil';
+import { LoginPage } from '../login/login';
 @Component({
   selector: 'page-about',
   templateUrl: 'about.html'
@@ -13,7 +14,7 @@ export class AboutPage {
   perfilDatos:any;
   dieta = {} as Dieta;
   DatosDieta:any;
-  constructor(public navCtrl: NavController,public alertCtrl: AlertController,private afAuth:AngularFireAuth,private afDatabase:AngularFireDatabase) {
+  constructor(public navCtrl: NavController,public alertCtrl: AlertController,private afAuth:AngularFireAuth,private afDatabase:AngularFireDatabase,private app:App) {
 
   }
   ionViewWillLoad(){
@@ -27,6 +28,10 @@ export class AboutPage {
     })
  
    }
+   logout(){
+    this.app.getRootNav().setRoot(LoginPage);
+    //this.navCtrl.setRoot(LoginPage); 
+  }
   showRadio() {
     let alert = this.alertCtrl.create();
     alert.setTitle('Selecciona un tipo de dieta');

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {ListacomidasPage} from '../../pages/listacomidas/listacomidas';
 import {ComidasRegionalesPage} from '../../pages/comidas-regionales/comidas-regionales';
 import {AgregarCPerPage} from '../../pages/agregar-c-per/agregar-c-per';
 import * as firebase from 'firebase';
 import {snapshotToArray} from '../../app/models/perfil'
+import { ContactPage } from '../contact/contact';
 /**
  * Generated class for the ComidasPersonalizadasPage page.
  *
@@ -20,7 +21,8 @@ import {snapshotToArray} from '../../app/models/perfil'
 export class ComidasPersonalizadasPage {
   items=[];
   ref= firebase.database().ref('ComidasPerso/')
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  ref2= firebase.database().ref('ComidasHoy/')
+  constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl :AlertController) {
     this.ref.on('value',resp =>{
       this.items= snapshotToArray(resp);
     })
@@ -38,5 +40,22 @@ export class ComidasPersonalizadasPage {
   }
   redirecAgregarCPer(){
     this.navCtrl.push(AgregarCPerPage)
+  }
+  redirecAlimen(item){
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Agregar alimento');
+    
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Agregar',
+      handler: data => {
+        
+         let newItem=this.ref2.push();
+         newItem.set(item)
+         this.navCtrl.setRoot(ContactPage);
+      }
+    });
+    alert.present();
+
   }
 }

@@ -8,6 +8,7 @@ import {snapshotToArray} from '../../app/models/perfil'
 import {ComidasPersonalizadasPage} from '../../pages/comidas-personalizadas/comidas-personalizadas'
 import {ComidasRegionalesPage} from '../comidas-regionales/comidas-regionales';
 
+
 //import { map } from 'rxjs/operator/map';
 
 /**
@@ -30,6 +31,7 @@ export class ListacomidasPage {
   items=[];
   items2: any;
   ref= firebase.database().ref('Alimentos/')
+  ref2= firebase.database().ref('ComidasHoy/')
   bandera:boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,private afDatabase:AngularFireDatabase) {
     // this.alimentoRef = this.afDatabase.list('Alimentos');
@@ -47,7 +49,7 @@ export class ListacomidasPage {
     
    }
 
-  redirecAlimen(key){
+ async redirecAlimen(item){
     let alert = this.alertCtrl.create();
     alert.setTitle('Agregar alimento');
     
@@ -55,10 +57,10 @@ export class ListacomidasPage {
     alert.addButton({
       text: 'Agregar',
       handler: data => {
-        data= this.items;
-        this.afDatabase.object(`ComidasHoy/`).set(data)
-         this.navCtrl.setRoot(ContactPage)
-         
+        
+         let newItem=this.ref2.push();
+         newItem.set(item)
+         this.navCtrl.setRoot(ContactPage);
       }
     });
     alert.present();
@@ -94,4 +96,5 @@ export class ListacomidasPage {
   redirComidasReg(){
     this.navCtrl.push(ComidasRegionalesPage)
   }
+  
 }
