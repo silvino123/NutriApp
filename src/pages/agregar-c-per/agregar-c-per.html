@@ -1,0 +1,39 @@
+<!--
+  Generated template for the AgregarCPerPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="rojo">
+    <ion-title>Agregar Comidas Personalizadas</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+
+        <ion-item>
+          <ion-label floating>Nombre</ion-label>
+          <ion-input type="text" [(ngModel)]="ComidaP.nombre" name="nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Ingredientes</ion-label>
+            <ion-input type="text" [(ngModel)]="ComidaP.ingredientes" name="nombre"></ion-input>
+          </ion-item>
+        <ion-item>
+          <ion-label floating>Calorias</ion-label>
+          <ion-input type="number" [(ngModel)]="ComidaP.caloria" name="caloria" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Porcion(gr)</ion-label>
+          <ion-input type="number"[(ngModel)]="ComidaP.porcion"  name="porcion"></ion-input>
+        </ion-item>
+        <ion-item>
+        </ion-item>
+    </ion-list>
+    <button ion-button outline  block color="danger" (click)="Agregar()">Agregar</button>
+</ion-content>

@@ -1,0 +1,39 @@
+<!--
+  Generated template for the AgregarCRegPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="rojo">
+    <ion-title>Agregar Comidas Regionales</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+
+        <ion-item>
+          <ion-label floating>Nombre</ion-label>
+          <ion-input type="text" [(ngModel)]="ComidaReg.nombre" name="nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Ingredientes</ion-label>
+            <ion-input type="text" [(ngModel)]="ComidaReg.ingredientes" name="nombre"></ion-input>
+          </ion-item>
+        <ion-item>
+          <ion-label floating>Calorias</ion-label>
+          <ion-input type="number" [(ngModel)]="ComidaReg.caloria" name="caloria" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Porcion(gr)</ion-label>
+          <ion-input type="number"[(ngModel)]="ComidaReg.porcion"  name="porcion"></ion-input>
+        </ion-item>
+        <ion-item>
+        </ion-item>
+    </ion-list>
+    <button ion-button outline  block color="danger" (click)="Agregar()">Agregar</button>
+</ion-content>

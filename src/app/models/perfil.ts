@@ -17,7 +17,13 @@ export interface Alimento{
     caloria:number;
     porcion:number;
 }
-
+export interface ComidaPer{
+    id:string;
+    nombre:string;
+    ingredientes:string;
+    caloria:number;
+    porcion:number;
+}
 export const snapshotToArray = snapshot=>{
     let returnArray =[];
     snapshot.forEach(element => {

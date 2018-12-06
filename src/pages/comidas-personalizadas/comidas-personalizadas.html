@@ -26,7 +26,16 @@
           </ion-segment-button>
       </ion-segment>
       <ion-fab right bottom >
-          <button ion-fab color="Secondary" (click)="redirecAlimentos()"><ion-icon name="add"></ion-icon></button>
+          <button ion-fab color="Secondary" (click)=" redirecAgregarCPer()"><ion-icon name="add"></ion-icon></button>
          
         </ion-fab>
+        <ion-list *ngFor='let item of items'>
+  
+            <ion-item color="light" (click)="redirecAlimen()">
+              <h3>Nombre:{{item.nombre}}&nbsp;<br>
+                Ingredientes:{{item.ingredientes}}&nbsp;<br>
+                Porcion:{{item.porcion}}gr &nbsp;<br>
+               Calorias: {{item.caloria}}Cal</h3></ion-item>
+            
+            </ion-list>
 </ion-content>

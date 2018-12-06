@@ -14,6 +14,8 @@ import {ListacomidasPage} from '../pages/listacomidas/listacomidas';
 import {AlimentosPage} from '../pages/alimentos/alimentos';
 import {ComidasPersonalizadasPage} from '../pages/comidas-personalizadas/comidas-personalizadas';
 import {ComidasRegionalesPage} from '../pages/comidas-regionales/comidas-regionales';
+import {AgregarCPerPage} from '../pages/agregar-c-per/agregar-c-per';
+import {AgregarCRegPage} from '../pages/agregar-c-reg/agregar-c-reg';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {AngularFireModule} from 'angularfire2';
@@ -42,7 +44,9 @@ var config = {
     ListacomidasPage,
     AlimentosPage,
     ComidasPersonalizadasPage,
-    ComidasRegionalesPage
+    ComidasRegionalesPage,
+    AgregarCPerPage,
+    AgregarCRegPage
     
   ],
   imports: [
@@ -68,7 +72,9 @@ var config = {
     ListacomidasPage,
     AlimentosPage,
     ComidasPersonalizadasPage,
-    ComidasRegionalesPage
+    ComidasRegionalesPage,
+    AgregarCPerPage,
+    AgregarCRegPage
   ],
   providers: [
     StatusBar,
