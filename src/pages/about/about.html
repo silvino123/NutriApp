@@ -11,17 +11,17 @@
    
     
     <ion-item-divider color="light" text-center>Calorias Diarias Requeridas</ion-item-divider>
-    <ion-item color="secondary"><h1 text-center>2839.325 Kcal</h1> </ion-item>
+    <ion-item color="secondary"><h1 text-center>{{(perfilDatos| async)?.kcal}} Kcal</h1> </ion-item>
     <ion-item-divider color="light">Distribucion de Nutrientes</ion-item-divider>
-    <ion-item (click)="showRadio()">Tipo de Dieta | <b style="color:#32db64">{{dieta}}</b> </ion-item>
-    <ion-item>Carbohidratos&nbsp; <b style="color:#32db64"></b>  </ion-item>
-    <ion-item>Proteinas&nbsp; <b style="color:#ef5350"></b></ion-item>
-    <ion-item>Grasas &nbsp;<b style="color:#ffcc80"></b></ion-item>
+    <ion-item (click)="showRadio()">Tipo de Dieta | {{(DatosDieta| async)?.nombre}}<b style="color:#32db64"></b> </ion-item>
+    <ion-item>Carbohidratos&nbsp; <b style="color:#32db64">%{{(DatosDieta| async)?.car}}</b>  </ion-item>
+    <ion-item>Proteinas&nbsp; <b style="color:#ef5350">%{{(DatosDieta| async)?.pro}}</b></ion-item>
+    <ion-item>Grasas &nbsp;<b style="color:#ffcc80">%{{(DatosDieta| async)?.gra}}</b></ion-item>
     <ion-item-divider color="light">Gramos por dia</ion-item-divider>
     <ion-item style="height:100px"> 
-      <button color="secondary" right class="boton_personalizado">Carbohidratos<br>0g<br>kcal</button>&nbsp;
-      <button color="secondary" center class="boton_personalizado2">Proteinas<br>0g<br>kcal</button>&nbsp;
-      <button color="secondary" end class="boton_personalizado3">Grasas<br>0g<br>kcal</button>
+      <button color="secondary" right class="boton_personalizado">Carbohidratos<br>{{(DatosDieta| async)?.carxdia}}g</button>&nbsp;
+      <button color="secondary" center class="boton_personalizado2">Proteinas<br>{{(DatosDieta| async)?.proxdia}}g</button>&nbsp;
+      <button color="secondary" end class="boton_personalizado3">Grasas<br>{{(DatosDieta| async)?.graxdia}}g</button>
   </ion-item>
   <ion-item-divider color="light">Gramos por Comida</ion-item-divider>
   <ion-item (click)="showRadio2()">Comidas por dia |<b style="color:#32db64"> {{comida}}</b> </ion-item>

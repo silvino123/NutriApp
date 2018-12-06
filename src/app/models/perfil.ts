@@ -24,6 +24,16 @@ export interface ComidaPer{
     caloria:number;
     porcion:number;
 }
+export interface Dieta{
+    id:string;
+    nombre:string;
+    car:number;
+    pro:number;
+    gra:number;
+    carxdia:number;
+    proxdia:number;
+    graxdia:number;
+}
 export const snapshotToArray = snapshot=>{
     let returnArray =[];
     snapshot.forEach(element => {
