@@ -1,16 +1,17 @@
 <ion-header>
   <ion-navbar color="rojo">
     <ion-title text-center>Perfil
-        <!-- <ion-fab right style="margin-top:-5%">
-    <button color="rojo" ion-fab ><ion-icon name="add"></ion-icon></button>
-        </ion-fab> -->
+        <ion-fab right style="margin-top:-5%">
+    <button color="secondary" ion-fab ><ion-icon name="power"></ion-icon></button>
+        </ion-fab>
         
     </ion-title>
+    
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  
+ 
     <ion-item-group>
       <ion-item-divider color="light">Datos del perfil</ion-item-divider>
       <ion-item>Altura (Cm):&nbsp; <b style="color:#32db64">{{(perfilDatos | async)?.altura}}</b></ion-item>
