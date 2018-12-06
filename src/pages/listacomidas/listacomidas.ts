@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {ContactPage} from '../../pages/contact/contact'
 import {AlimentosPage} from '../../pages/alimentos/alimentos';
-import {AngularFireList} from 'angularfire2/database';
+import {AngularFireList, AngularFireDatabase} from 'angularfire2/database';
 import * as firebase from 'firebase';
 import {snapshotToArray} from '../../app/models/perfil'
 import {ComidasPersonalizadasPage} from '../../pages/comidas-personalizadas/comidas-personalizadas'
@@ -23,16 +23,15 @@ import {ComidasRegionalesPage} from '../comidas-regionales/comidas-regionales';
   templateUrl: 'listacomidas.html',
 })
 export class ListacomidasPage {
- public Nombre="Manzana";
- public Descripcion="Fruta";
+ 
  alimentoRef: AngularFireList<any>;
  alimento: any;
- public Tipo= "Desayuno";
+ 
   items=[];
   items2: any;
   ref= firebase.database().ref('Alimentos/')
   bandera:boolean = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,private afDatabase:AngularFireDatabase) {
     // this.alimentoRef = this.afDatabase.list('Alimentos');
     // this.alimento = this.alimentoRef.snapshotChanges().map(changes => {
     //   return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -48,19 +47,17 @@ export class ListacomidasPage {
     
    }
 
-  redirecAlimen(){
+  redirecAlimen(key){
     let alert = this.alertCtrl.create();
-    alert.setTitle('Detalles del alimento');
+    alert.setTitle('Agregar alimento');
     
     alert.addButton('Cancel');
     alert.addButton({
       text: 'Agregar',
       handler: data => {
-        
-         this.Nombre= this.Nombre;
-         this.Descripcion= this.Descripcion;
-         this.Tipo= this.Tipo;
-         this.navCtrl.setRoot(ContactPage,{Nombre:this.Nombre,Descripcion:this.Descripcion,Tipo:this.Tipo})
+        data= this.items;
+        this.afDatabase.object(`ComidasHoy/`).set(data)
+         this.navCtrl.setRoot(ContactPage)
          
       }
     });
