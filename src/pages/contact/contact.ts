@@ -62,7 +62,7 @@ export class ContactPage {
     
     alert.addButton('Cancel');
     alert.addButton({
-      text: 'Agregar',
+      text: 'Eliminar',
       handler: data => {
         firebase.database().ref('ComidasHoy/'+key).remove()
       }
