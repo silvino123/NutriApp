@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { NavController,NavParams,App } from 'ionic-angular';
+import { NavController,NavParams,App,AlertController } from 'ionic-angular';
 import {ListacomidasPage } from '../../pages/listacomidas/listacomidas';
 import { AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from 'angularfire2/database';
@@ -24,7 +24,7 @@ export class ContactPage {
     private afAuth:AngularFireAuth,
     private afDatabase:AngularFireDatabase,
     private app:App,
-    private chRef: ChangeDetectorRef) {
+    private chRef: ChangeDetectorRef,public alertCtrl:AlertController) {
     this.Nombre = navParams.get('Nombre');
     this.Descripcion = navParams.get('Descripcion');
     this.Tipo = navParams.get('Tipo');
@@ -56,4 +56,18 @@ export class ContactPage {
     this.app.getRootNav().setRoot(LoginPage);
     //this.navCtrl.setRoot(LoginPage); 
   }
+  async delete(key){
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Eliminar alimento');
+    
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Agregar',
+      handler: data => {
+        firebase.database().ref('ComidasHoy/'+key).remove()
+      }
+    });
+    alert.present();
+      
+    }
 }

@@ -96,5 +96,5 @@ export class ListacomidasPage {
   redirComidasReg(){
     this.navCtrl.push(ComidasRegionalesPage)
   }
-  
+ 
 }
