@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { NavController,NavParams,App } from 'ionic-angular';
 import {ListacomidasPage } from '../../pages/listacomidas/listacomidas';
 import { AngularFireAuth} from '@angular/fire/auth';
@@ -17,7 +17,14 @@ export class ContactPage {
   perfilDatos:any;
   items=[];
   ref= firebase.database().ref('ComidasHoy/')
-  constructor(public navCtrl: NavController,public navParams: NavParams,private afAuth:AngularFireAuth,private afDatabase:AngularFireDatabase,private app:App) {
+  caloriasTotales:number = 0;
+
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private afAuth:AngularFireAuth,
+    private afDatabase:AngularFireDatabase,
+    private app:App,
+    private chRef: ChangeDetectorRef) {
     this.Nombre = navParams.get('Nombre');
     this.Descripcion = navParams.get('Descripcion');
     this.Tipo = navParams.get('Tipo');
@@ -33,6 +40,12 @@ export class ContactPage {
     })
     this.ref.on('value',resp =>{
       this.items= snapshotToArray(resp);
+      this.caloriasTotales = 0;
+      this.items.forEach(comida=>{
+        this.caloriasTotales+=parseInt(comida.caloria);
+      })
+
+      this.chRef.detectChanges();
     })
  
    }
