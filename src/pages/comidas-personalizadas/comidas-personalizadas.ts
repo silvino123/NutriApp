@@ -6,6 +6,8 @@ import {AgregarCPerPage} from '../../pages/agregar-c-per/agregar-c-per';
 import * as firebase from 'firebase';
 import {snapshotToArray} from '../../app/models/perfil'
 import { ContactPage } from '../contact/contact';
+import { AngularFireAuth} from '@angular/fire/auth';
+import {AngularFireDatabase} from 'angularfire2/database';
 /**
  * Generated class for the ComidasPersonalizadasPage page.
  *
@@ -20,16 +22,35 @@ import { ContactPage } from '../contact/contact';
 })
 export class ComidasPersonalizadasPage {
   items=[];
-  ref= firebase.database().ref('ComidasPerso/')
+  ref:any;
   ref2= firebase.database().ref('ComidasHoy/')
-  constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl :AlertController) {
-    this.ref.on('value',resp =>{
-      this.items= snapshotToArray(resp);
+  constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl :AlertController,private afAuth:AngularFireAuth,private afDatabase:AngularFireDatabase) {
+    
+    this.afAuth.authState.take(1).subscribe(data =>{
+      
+       this.ref= firebase.database().ref(`ComidasPerso/${data.uid}`)
+      // this.DatosDieta= this.afDatabase.object(`Dieta/${data.uid}`).valueChanges(); 
+      this.ref.on('value',resp =>{
+        this.items= snapshotToArray(resp);
+        
+      })
+   
+      
     })
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ComidasPersonalizadasPage');
+    this.afAuth.authState.take(1).subscribe(data =>{
+      
+      this.ref= firebase.database().ref(`ComidasPerso/${data.uid}`)
+     // this.DatosDieta= this.afDatabase.object(`Dieta/${data.uid}`).valueChanges(); 
+     this.ref.on('value',resp =>{
+       this.items= snapshotToArray(resp);
+       
+     })
+  
+     
+   })
   }
 
   redirAlimen(){
@@ -49,10 +70,16 @@ export class ComidasPersonalizadasPage {
     alert.addButton({
       text: 'Agregar',
       handler: data => {
+        this.afAuth.authState.take(1).subscribe(d =>{
+         
+          this.afDatabase.list(`ComidasHoy/${d.uid}`).push(item)
         
-         let newItem=this.ref2.push();
-         newItem.set(item)
          this.navCtrl.setRoot(ContactPage);
+      
+          })
+        //  let newItem=this.ref2.push();
+        //  newItem.set(item)
+        //  this.navCtrl.setRoot(ContactPage);
       }
     });
     alert.present();

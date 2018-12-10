@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {ContactPage} from '../../pages/contact/contact'
 import {AlimentosPage} from '../../pages/alimentos/alimentos';
-import {AngularFireList, AngularFireDatabase} from 'angularfire2/database';
+import {AngularFireList} from 'angularfire2/database';
 import * as firebase from 'firebase';
 import {snapshotToArray} from '../../app/models/perfil'
 import {ComidasPersonalizadasPage} from '../../pages/comidas-personalizadas/comidas-personalizadas'
 import {ComidasRegionalesPage} from '../comidas-regionales/comidas-regionales';
-
+import { AngularFireAuth} from '@angular/fire/auth';
+import {AngularFireDatabase} from 'angularfire2/database';
 
 //import { map } from 'rxjs/operator/map';
 
@@ -31,9 +32,9 @@ export class ListacomidasPage {
   items=[];
   items2: any;
   ref= firebase.database().ref('Alimentos/')
-  ref2= firebase.database().ref('ComidasHoy/')
+  ref2:any;
   bandera:boolean = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,private afDatabase:AngularFireDatabase) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,private afAuth:AngularFireAuth,private afDatabase:AngularFireDatabase) {
     // this.alimentoRef = this.afDatabase.list('Alimentos');
     // this.alimento = this.alimentoRef.snapshotChanges().map(changes => {
     //   return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -57,10 +58,20 @@ export class ListacomidasPage {
     alert.addButton({
       text: 'Agregar',
       handler: data => {
-        
-         let newItem=this.ref2.push();
-         newItem.set(item)
+        this.afAuth.authState.take(1).subscribe(d =>{
+          
+          //  this.ref= firebase.database().ref(`ComidasHoy/${d.uid}`)
+          // this.DatosDieta= this.afDatabase.object(`Dieta/${data.uid}`).valueChanges(); 
+          this.afDatabase.list(`ComidasHoy/${d.uid}`).push(item)
+        //     let newItem=this.ref2.object();
+        //  newItem.set(item)
          this.navCtrl.setRoot(ContactPage);
+      
+          })
+        
+          
+       
+         
       }
     });
     alert.present();

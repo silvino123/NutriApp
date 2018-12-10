@@ -16,7 +16,7 @@ export class ContactPage {
   public Tipo:string;
   perfilDatos:any;
   items=[];
-  ref= firebase.database().ref('ComidasHoy/')
+  ref:any;
   caloriasTotales:number = 0;
 
   constructor(public navCtrl: NavController,
@@ -34,19 +34,21 @@ export class ContactPage {
       if(data && data.email&&data.uid){
        this.perfilDatos= this.afDatabase.object(`Perfil/${data.uid}`).valueChanges(); 
        console.log(this.perfilDatos)
+       this.ref= firebase.database().ref(`ComidasHoy/${data.uid}`)
       // this.DatosDieta= this.afDatabase.object(`Dieta/${data.uid}`).valueChanges(); 
-      }
+      this.ref.on('value',resp =>{
+        this.items= snapshotToArray(resp);
+        this.caloriasTotales = 0;
+        this.items.forEach(comida=>{
+          this.caloriasTotales+=parseInt(comida.caloria);
+        })
+  
+        this.chRef.detectChanges();
+      })
+    }
       
     })
-    this.ref.on('value',resp =>{
-      this.items= snapshotToArray(resp);
-      this.caloriasTotales = 0;
-      this.items.forEach(comida=>{
-        this.caloriasTotales+=parseInt(comida.caloria);
-      })
-
-      this.chRef.detectChanges();
-    })
+    
  
    }
   redirec(){
@@ -62,9 +64,16 @@ export class ContactPage {
     
     alert.addButton('Cancel');
     alert.addButton({
-      text: 'Agregar',
+      text: 'Eliminar',
       handler: data => {
-        firebase.database().ref('ComidasHoy/'+key).remove()
+        this.afAuth.authState.take(1).subscribe(d =>{
+          
+          firebase.database().ref(`ComidasHoy/${d.uid}/${key}`).remove()
+       
+         this.navCtrl.setRoot(ContactPage);
+      
+          })
+        //firebase.database().ref('ComidasHoy/'+key).remove()
       }
     });
     alert.present();

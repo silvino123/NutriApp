@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import{ComidaPer} from '../../app/models/perfil'
 import {AngularFireDatabase} from 'angularfire2/database'
 import{ ComidasRegionalesPage } from '../../pages/comidas-regionales/comidas-regionales'
+import { AngularFireAuth} from '@angular/fire/auth';
 /**
  * Generated class for the AgregarCRegPage page.
  *
@@ -17,14 +18,21 @@ import{ ComidasRegionalesPage } from '../../pages/comidas-regionales/comidas-reg
 })
 export class AgregarCRegPage {
   ComidaReg ={} as ComidaPer;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private afDatabase:AngularFireDatabase) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private afDatabase:AngularFireDatabase,private afAuth:AngularFireAuth) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AgregarCRegPage');
   }
   Agregar(){
-    this.afDatabase.list(`ComidasRegio/`).push(this.ComidaReg)
-    this.navCtrl.push(ComidasRegionalesPage)
+    //this.afDatabase.list(`ComidasRegio/`).push(this.ComidaReg)
+    //this.navCtrl.push(ComidasRegionalesPage)
+    this.afAuth.authState.take(1).subscribe(d =>{
+     
+      this.afDatabase.list(`ComidasRegio/${d.uid}`).push(this.ComidaReg)
+    
+      this.navCtrl.push(ComidasRegionalesPage)
+  
+      })
  }
 }
