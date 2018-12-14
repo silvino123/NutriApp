@@ -4,10 +4,10 @@ peso:number;
 edad:number;
 sexo:string;
 nivel: string;
-    imc:number;
-    grasa:number;
+    imc:any;
+    grasa:any;
     agua:number;
-    kcal:number;
+    kcal:any;
 
 }
 

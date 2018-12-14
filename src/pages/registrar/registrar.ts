@@ -21,23 +21,23 @@ export class RegistrarPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController,public  aAuth:AngularFireAuth,public toastCtrl:ToastController) {
   }
 
-  Registrar(){
+ async Registrar(){
     try{
-      const result= this.aAuth.auth.createUserWithEmailAndPassword(this.email,this.password)
+      const result= await this.aAuth.auth.createUserWithEmailAndPassword(this.email,this.password)
       if(result){
-      const loader = this.loadingCtrl.create({
+      const loader = await this.loadingCtrl.create({
       content: "Conectando...",
       duration: 1000
     });
     loader.present();
-    this.navCtrl.setRoot(DatosperfilPage)
+  await  this.navCtrl.setRoot(DatosperfilPage)
       }
     
     }
 
     catch(e){
       const toast = this.toastCtrl.create({
-        message: "Campos requeridos |contraseña debe ser mayor a 6 caracteres",
+        message: "Campos requeridos| contraseña debe ser mayor a 6 caracteres| correo invalido",
         duration: 3000
       });
       toast.present();

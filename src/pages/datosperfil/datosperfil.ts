@@ -60,8 +60,11 @@ ed:number;
     this.contador = (66.473 ) + (13.751 * this.pes ) + ( 5.0033 * this.al) - (6.7550 * this.ed);
     //this.contador=13.751 + this.pes;
     this.perfil.kcal= this.contador * this.actividadFisica;
+    this.perfil.kcal=this.perfil.kcal.toFixed(2)
     this.perfil.imc = (this.pes /(this.al*this.al)) * 10000;
+    this.perfil.imc=this.perfil.imc.toFixed(2)
     this.perfil.grasa=1.2*this.perfil.imc+0.23*this.ed-10.8*1-5.4;
+    this.perfil.grasa=this.perfil.grasa.toFixed(2)
     this.perfil.agua=2000;
     console.log(this.contador)
     console.log(this.perfil.kcal)
@@ -102,8 +105,11 @@ if(this.perfil.nivel.toString()=="Muy Activo"){
  this.contador = (655.1 ) + (9.463 * this.pes ) + ( 1.8 * this.al) - (4.6756 * this.ed);
  //this.contador=13.751 + this.pes;
  this.perfil.kcal= this.contador * this.actividadFisica;
+ this.perfil.kcal=this.perfil.kcal.toFixed(2)
  this.perfil.imc= (this.pes / (this.al * this.al)) * 10000;
+ this.perfil.imc=this.perfil.imc.toFixed(2)
  this.perfil.grasa=1.2*this.perfil.imc+0.23*this.ed-10.8*1-5.4;
+ this.perfil.grasa=this.perfil.grasa.toFixed(2)
  this.perfil.agua=2000;
  console.log(this.contador)
  console.log(this.perfil.kcal)
