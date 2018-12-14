@@ -28,10 +28,29 @@ export class ContactPage {
     this.Nombre = navParams.get('Nombre');
     this.Descripcion = navParams.get('Descripcion');
     this.Tipo = navParams.get('Tipo');
+    this.afAuth.authState.take(1).subscribe(data =>{
+     
+     
+      
+      this.ref= firebase.database().ref(`ComidasHoy/${data.uid}`)
+     // this.DatosDieta= this.afDatabase.object(`Dieta/${data.uid}`).valueChanges(); 
+     this.ref.on('value',resp =>{
+       this.items= snapshotToArray(resp);
+       this.caloriasTotales = 0;
+       this.items.forEach(comida=>{
+         this.caloriasTotales+=parseInt(comida.caloria);
+       })
+ 
+      
+     })
+      
+   
+     
+   })
   }
   ionViewWillLoad(){
     this.afAuth.authState.take(1).subscribe(data =>{
-      if(data && data.email&&data.uid){
+     
        this.perfilDatos= this.afDatabase.object(`Perfil/${data.uid}`).valueChanges(); 
        console.log(this.perfilDatos)
        this.ref= firebase.database().ref(`ComidasHoy/${data.uid}`)
@@ -45,7 +64,8 @@ export class ContactPage {
   
         this.chRef.detectChanges();
       })
-    }
+      
+    
       
     })
     

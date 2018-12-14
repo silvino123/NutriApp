@@ -26,11 +26,11 @@ export class LoginPage {
     this.navCtrl.push(RegistrarPage)
   }
 
-  login(){
+ async login(){
       try{
-       const result= this.aAuth.auth.signInWithEmailAndPassword(this.email,this.password)
+       const result=  await this.aAuth.auth.signInWithEmailAndPassword(this.email,this.password)
      if(result){
-      this.navCtrl.setRoot(TabsPage)
+      await this.navCtrl.setRoot(TabsPage)
               }
       }
       catch(e){
