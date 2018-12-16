@@ -29,9 +29,7 @@ export class MyApp {
      
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.platform.registerBackButtonAction(() => {
-        this.nav.setRoot(TabsPage);
-});
+   
     });
   }
 }
